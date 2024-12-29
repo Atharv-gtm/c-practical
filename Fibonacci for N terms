@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n, x, y, z, count=1;
+    cout<<"Enter the Number of term : ";
+    cin>>n;
+    x=0;
+    y=1;
+    z=0;
+    while(count<=n)
+    {
+        cout<<"\n"<<z;
+        x=y;
+        y=z;
+        z=x+y;
+        count=count+1;
+    }
+    return 0;
+}
