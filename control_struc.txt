@@ -1,0 +1,115 @@
+// custom countdown using while
+
+#include <iostream>
+using namespace std;
+
+int main ()
+{
+  int n;
+  cout << "Enter the starting number > ";
+  cin >> n;
+
+  while (n>0) {
+    cout << n << ", ";
+    --n;
+  }
+
+  cout << "FIRE!\n";
+  return 0;
+}
+
+.................................................................
+
+// number echoer
+
+#include <iostream>
+using namespace std;
+
+int main ()
+{
+  unsigned long n;
+  do {
+    cout << "Enter number (0 to end): ";
+    cin >> n;
+    cout << "You entered: " << n << "\n";
+  } while (n != 0);
+  return 0;
+}
+.....................................................................
+
+
+// countdown using a for loop
+#include <iostream>
+using namespace std;
+int main ()
+{
+  for (int n=10; n>0; n--) {
+    cout << n << ", ";
+  }
+  cout << "FIRE!\n";
+  return 0;
+}
+
+
+.....................................................................
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    int num;
+
+    cout << "Enter a number: ";
+
+    cin >> num;
+
+    if (num > 0) {
+
+        cout << "The number is positive." << endl;
+
+    } 
+else if (num < 0) {
+
+        cout << "The number is negative." << endl;
+
+    } 
+else {
+
+        cout << "The number is zero." << endl;
+
+    }
+
+    return 0;
+
+}
+....................................................................
+
+// C++ program to demonstrate syntax of switch
+#include <iostream>
+using namespace std;
+
+// Driver Code
+int main()
+{
+    // switch variable
+    char x = 'A';
+
+    // switch statements
+    switch (x) {
+    case 'A':
+        cout << "Choice is A";
+        break;
+    case 'B':
+        cout << "Choice is B";
+        break;
+    case 'C':
+        cout << "Choice is C";
+        break;
+    default:
+        cout << "Choice other than A, B and C";
+        break;
+    }
+    return 0;
+}
