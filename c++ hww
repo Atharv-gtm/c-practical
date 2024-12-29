@@ -1,0 +1,610 @@
+Ques 1: Write a program to print the following pattern taking number of lines as a input from the user:
+
+	*
+	**
+	***
+	****
+	*****
+Ans: 	Code -
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    	int n;
+
+    	// Ask the user to input the number of lines
+    	cout << "Enter the number of lines: ";
+    	cin >> n;
+	
+    	// Loop through each line
+    	for (int i = 1; i <= n; i++) {
+       		// Print '*' i times on each line
+       		for (int j = 1; j <= i; j++) {
+        		 cout << "*";
+        	}
+        	// Move to the next line
+        	cout << endl;
+    	}
+
+    	return 0;
+}
+
+ 	Output -
+Enter the number of lines: 5
+	
+*
+**
+***
+****
+*****	
+
+Ques 2: What is function overloading? Write a program to overload area() function to lined area of  rectangle and circle
+
+Ans: Function overloading is a feature in C++ where you can define multiple functions with the same name but different parameter lists. The compiler differentiates between the overloaded functions based on the number and/or types of parameters. It is a way to perform different tasks using the same function name, improving code readability and reusability.
+
+In C++, function overloading allows you to have multiple functions with the same name but different parameter types or different numbers of parameters. The compiler will determine which function to call based on the arguments passed to the function during runtime.
+
+Code -
+
+#include <iostream>
+#include <cmath> // For M_PI (PI constant) when calculating area of a circle
+
+// Class to calculate area
+class Shape {
+public:
+    // Overloaded function to calculate area of a rectangle
+    double area(double length, double width) {
+        return length * width; // Area of rectangle
+    }
+
+    // Overloaded function to calculate area of a circle
+    double area(double radius) {
+        return M_PI * radius * radius; // Area of circle (πr^2)
+    }
+};
+
+int main() {
+    Shape shape;
+
+    // Calculate area of rectangle (length = 5, width = 3)
+    double rectLength = 5.0, rectWidth = 3.0;
+    std::cout << "Area of rectangle: " << shape.area(rectLength, rectWidth) << std::endl;
+
+    // Calculate area of circle (radius = 7)
+    double radius = 7.0;
+    std::cout << "Area of circle: " << shape.area(radius) << std::endl;
+
+    return 0;
+}
+
+Output -
+
+Area of rectangle: 15
+Area of circle: 153.938
+
+Ques 3: Write a program to compute the factor of given number using default argument.
+
+Ans: Code -
+
+#include <iostream>
+using namespace std;
+
+// Function to print the factors of a number using default arguments
+void findFactors(int num, int start = 1) {
+    cout << "Factors of " << num << " are: ";
+    for (int i = start; i <= num; i++) {
+        if (num % i == 0) {
+            cout << i << " ";  // Print the factor
+        }
+    }
+    cout << endl;
+}
+
+int main() {
+    int num;
+    
+    // Take user input for the number
+    cout << "Enter a number to find its factors: ";
+    cin >> num;
+    
+    // Find factors starting from 1 (default argument)
+    findFactors(num);
+    
+    // Optionally, find factors starting from a different number (e.g., 3)
+    int start;
+    cout << "Enter a starting point for factors (default is 1): ";
+    cin >> start;
+    findFactors(num, start);
+
+    return 0;
+}
+
+
+Output -
+
+Enter a number to find its factors: 72
+Factors of 72 are: 1 2 3 4 6 8 9 12 18 24 36 72 
+Enter a starting point for factors (default is 1): 4
+Factors of 72 are: 4 6 8 9 12 18 24 36 72 
+
+Ques 4: Write a program to perform following operation on  an Array:
+
+	i) Find the minimum, maximum and the average of array elements.
+	ii)Search an element in the array.
+	iii)Display the every address of every element of Array.
+
+
+Ans : Code-
+
+#include <iostream>
+using namespace std;
+
+// Function to find the minimum, maximum, and average of array elements
+void findMinMaxAvg(int arr[], int size) {
+    int min = arr[0], max = arr[0];
+    double sum = 0.0;
+
+    for (int i = 0; i < size; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+        sum += arr[i];
+    }
+
+    double avg = sum / size;
+
+    cout << "Minimum value: " << min << endl;
+    cout << "Maximum value: " << max << endl;
+    cout << "Average value: " << avg << endl;
+}
+
+// Function to search for an element in the array
+int searchElement(int arr[], int size, int key) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == key) {
+            return i; // Element found, return index
+        }
+    }
+    return -1; // Element not found
+}
+
+// Function to display the memory address of each element in the array
+void displayAddresses(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        cout << "Address of element " << arr[i] << ": " << &arr[i] << endl;
+    }
+}
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50, 60, 70};
+    int size = sizeof(arr) / sizeof(arr[0]); // Calculate the size of the array
+    
+    // i) Find the minimum, maximum, and average of array elements
+    findMinMaxAvg(arr, size);
+    
+    // ii) Search an element in the array
+    int key;
+    cout << "Enter an element to search in the array: ";
+    cin >> key;
+    
+    int index = searchElement(arr, size, key);
+    if (index != -1) {
+        cout << "Element " << key << " found at index: " << index << endl;
+    } else {
+        cout << "Element " << key << " not found in the array." << endl;
+    }
+
+    // iii) Display the address of each element in the array
+    displayAddresses(arr, size);
+    
+    return 0;
+}
+
+Output -
+
+Minimum value: 10
+Maximum value: 70
+Average value: 40
+Enter an element to search in the array: 50
+Element 50 found at index: 4
+Address of element 10: 0x5ffea0
+Address of element 20: 0x5ffea4
+Address of element 30: 0x5ffea8
+Address of element 40: 0x5ffeac
+Address of element 50: 0x5ffeb0
+Address of element 60: 0x5ffeb4
+Address of element 70: 0x5ffeb8
+
+Ques 5: Write a program to perform following operation on  string:
+
+	i) Calculate the length of string 
+	ii) Reverse the string
+	iii) Display the address of every character of the string.
+
+Ans : Code -
+
+#include <iostream>
+#include <string> // For using string class
+using namespace std;
+
+// Function to calculate the length of the string
+int calculateLength(const string& str) {
+    return str.length(); // Returns the length of the string
+}
+
+// Function to reverse the string
+void reverseString(string& str) {
+    int n = str.length();
+    for (int i = 0; i < n / 2; i++) {
+        swap(str[i], str[n - 1 - i]); // Swap characters to reverse the string
+    }
+}
+
+// Function to display the memory address of every character in the string
+void displayAddresses(const string& str) {
+    for (size_t i = 0; i < str.length(); i++) {
+        cout << "Address of character '" << str[i] << "': " << &str[i] << endl;
+    }
+}
+
+int main() {
+    string str;
+
+    // Input string from the user
+    cout << "Enter a string: ";
+    getline(cin, str);
+
+    // i) Calculate the length of the string
+    cout << "Length of the string: " << calculateLength(str) << endl;
+
+    // ii) Reverse the string
+    reverseString(str);
+    cout << "Reversed string: " << str << endl;
+
+    // iii) Display the memory address of every character of the string
+    displayAddresses(str);
+
+    return 0;
+}
+
+Output -
+
+Enter a string: Deshbandhu College
+Length of the string: 18
+Reversed string: egelloC uhdnabhseD
+Address of character 'e': egelloC uhdnabhseD
+Address of character 'g': gelloC uhdnabhseD
+Address of character 'e': elloC uhdnabhseD
+Address of character 'l': lloC uhdnabhseD
+Address of character 'l': loC uhdnabhseD
+Address of character 'o': oC uhdnabhseD
+Address of character 'C': C uhdnabhseD
+Address of character ' ':  uhdnabhseD
+Address of character 'u': uhdnabhseD
+Address of character 'h': hdnabhseD
+Address of character 'd': dnabhseD
+Address of character 'n': nabhseD
+Address of character 'a': abhseD
+Address of character 'b': bhseD
+Address of character 'h': hseD
+Address of character 's': seD
+Address of character 'e': eD
+Address of character 'D': D
+
+Ques 6: Copy the content of one text file to another text file and display the number of characters are copied.
+
+Ans: code - 
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    // Declare input and output file streams
+    ifstream inputFile("source.txt");  // Input file to read from
+    ofstream outputFile("destination.txt");  // Output file to write to
+
+    // Check if the input file is open
+    if (!inputFile) {
+        cerr << "Error: Could not open the source file." << endl;
+        return 1;
+    }
+
+    // Check if the output file is open
+    if (!outputFile) {
+        cerr << "Error: Could not open the destination file." << endl;
+        return 1;
+    }
+
+    char ch;
+    int charCount = 0;
+
+    // Copy characters from source file to destination file
+    while (inputFile.get(ch)) {  // Read character by character
+        outputFile.put(ch);  // Write each character to the destination file
+        charCount++;  // Increment the character count
+    }
+
+    // Display the number of characters copied
+    cout << "Number of characters copied: " << charCount << endl;
+
+    // Close the files
+    inputFile.close();
+    outputFile.close();
+
+    return 0;
+}
+
+Output -
+
+Number of characters copied: 532
+
+Ques 7: What is the use of constructor in the class? What are the characteristic of the constructor? Explain the following constructors with suitable example: 
+
+	i) Default Constructor
+	ii) Parameterized Constructor
+	iii) Copy Constructor
+
+Ans: What is the use of a Constructor in a Class?
+A constructor in C++ is a special member function that is automatically invoked when an object of a class is created. Its primary purpose is to initialize the object's data members or allocate resources for the object. Constructors are essential in ensuring that an object is in a valid state when it is created.
+
+Characteristics of Constructors:
+No Return Type: Constructors do not have a return type, not even void.
+
+Same Name as Class: The constructor must have the same name as the class it belongs to.
+
+Automatically Called: Constructors are called automatically when an object is created, so you don't need to explicitly call them.
+
+Overloading: You can have multiple constructors with different parameter lists (constructor overloading) to initialize objects in different ways.
+
+Can Have Default Values: Constructors can have default values for parameters, making it possible to create an object with or without providing arguments.
+
+Types of Constructors:
+Default Constructor: A constructor that does not take any arguments. It initializes an object with default values.
+
+Parameterized Constructor: A constructor that accepts parameters to initialize an object with specific values.
+
+Copy Constructor: A constructor that initializes an object using another object of the same class.
+
+i) Default Constructor
+A default constructor is a constructor that takes no arguments. It is typically used to initialize an object with default or preset values.
+
+Code - 
+
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+public:
+    int length, width;
+
+    // Default constructor
+    Rectangle() {
+        length = 5;  // Default length
+        width = 3;   // Default width
+    }
+
+    void display() {
+        cout << "Length: " << length << ", Width: " << width << endl;
+    }
+};
+
+int main() {
+    Rectangle rect;  // Default constructor is called
+    rect.display();  // Display the default values
+    return 0;
+}
+
+Output -
+
+Length: 5, Width: 3
+
+ii) Parameterized Constructor
+A parameterized constructor is a constructor that takes arguments. It allows you to initialize an object with specific values at the time of its creation.
+
+Code - 
+
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+public:
+    int length, width;
+
+    // Parameterized constructor
+    Rectangle(int l, int w) {
+        length = l;
+        width = w;
+    }
+
+    void display() {
+        cout << "Length: " << length << ", Width: " << width << endl;
+    }
+};
+
+int main() {
+    // Create object with specific dimensions using the parameterized constructor
+    Rectangle rect(10, 20);
+    rect.display();  // Display the values
+    return 0;
+}
+
+Output - 
+
+Length: 10, Width: 20
+
+iii) Copy Constructor
+A copy constructor is used to create a new object as a copy of an existing object of the same class. It is called when:
+
+1. An object is passed by value to a function.
+2. A new object is initialized with another object of the same class.
+3. An object is returned from a function.
+
+Code -
+
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+public:
+    int length, width;
+
+    // Parameterized constructor
+    Rectangle(int l, int w) {
+        length = l;
+        width = w;
+    }
+
+    // Copy constructor
+    Rectangle(const Rectangle &rect) {
+        length = rect.length;
+        width = rect.width;
+    }
+
+    void display() {
+        cout << "Length: " << length << ", Width: " << width << endl;
+    }
+};
+
+int main() {
+    Rectangle rect1(10, 20);  // Create rect1 with specific dimensions
+    Rectangle rect2 = rect1;   // Copy constructor is called here
+
+    cout << "Original Rectangle: ";
+    rect1.display();
+    
+    cout << "Copied Rectangle: ";
+    rect2.display();
+
+    return 0;
+}
+
+Output - 
+
+Original Rectangle: Length: 10, Width: 20
+Copied Rectangle: Length: 10, Width: 20
+
+
+Ques 8: Explain public, private and protected access specifiers and show their visibility when they are inherited as public, private and protected.
+
+Ans: public: Members declared as public can be accessed from anywhere, both inside and outside the class.
+
+private: Members declared as private can only be accessed from within the class itself. They are not accessible from outside the class or its derived classes.
+
+protected: Members declared as protected can be accessed from within the class and by derived classes, but not from outside the class.
+These access specifiers are essential in enforcing encapsulation and controlling access to class data.
+
+Inheritance and Access Specifiers:
+When a class is inherited from a base class, the access to the members of the base class depends on the inheritance type: public, protected, or private inheritance.
+
+Public Inheritance: The public members of the base class remain public in the derived class, and the protected members remain protected. Private members are not accessible in the derived class.
+
+Protected Inheritance: The public and protected members of the base class both become protected in the derived class. Private members remain inaccessible.
+
+Private Inheritance: Both the public and protected members of the base class become private in the derived class. Private members remain inaccessible.
+
+Code-
+
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    int publicVar;
+    
+    Base() : publicVar(10), privateVar(20), protectedVar(30) {}
+    
+    void display() {
+        cout << "publicVar: " << publicVar << endl;
+        cout << "privateVar: " << privateVar << endl;
+        cout << "protectedVar: " << protectedVar << endl;
+    }
+
+private:
+    int privateVar;
+    
+protected:
+    int protectedVar;
+};
+
+class DerivedPublic : public Base {
+public:
+    void show() {
+        // Accessing members in public inheritance
+        cout << "In DerivedPublic class:" << endl;
+        cout << "publicVar: " << publicVar << endl;   // Accessible
+        // cout << "privateVar: " << privateVar << endl;  // Not accessible
+        cout << "protectedVar: " << protectedVar << endl; // Accessible
+    }
+};
+
+class DerivedProtected : protected Base {
+public:
+    void show() {
+        // Accessing members in protected inheritance
+        cout << "In DerivedProtected class:" << endl;
+        cout << "publicVar: " << publicVar << endl;   // Accessible (protected in derived class)
+        // cout << "privateVar: " << privateVar << endl;  // Not accessible
+        cout << "protectedVar: " << protectedVar << endl; // Accessible (protected in derived class)
+    }
+};
+
+class DerivedPrivate : private Base {
+public:
+    void show() {
+        // Accessing members in private inheritance
+        cout << "In DerivedPrivate class:" << endl;
+        cout << "publicVar: " << publicVar << endl;   // Accessible (private in derived class)
+        // cout << "privateVar: " << privateVar << endl;  // Not accessible
+        cout << "protectedVar: " << protectedVar << endl; // Accessible (private in derived class)
+    }
+};
+
+int main() {
+    DerivedPublic obj1;
+    obj1.show(); // DerivedPublic shows public and protected members accessible
+    
+    DerivedProtected obj2;
+    obj2.show(); // DerivedProtected shows public and protected members accessible (protected in derived class)
+
+    DerivedPrivate obj3;
+    obj3.show(); // DerivedPrivate shows public and protected members accessible (private in derived class)
+    
+    return 0;
+}
+
+Output-
+
+In DerivedPublic class:
+publicVar: 10
+protectedVar: 30
+
+In DerivedProtected class:
+publicVar: 10
+protectedVar: 30
+
+In DerivedPrivate class:
+publicVar: 10
+protectedVar: 30
+
+Ques 9: write a c++ program to compute the sum of first n term of the following series :
+S = 1-2^n+3^n+4^n...
+
+Ans:
+Code -
+
+def sum_of_series(n):
+    total_sum = 0
+    for i in range(1, n + 1):
+        total_sum += ((-1) ** (i + 1)) * (i ** n)  # Apply the alternating sign and power of i
+    return total_sum
+
+# Input: n
+n = int(input("Enter the value of n: "))
+result = sum_of_series(n)
+
+print(f"The sum of the first {n} terms of the series is: {result}")
